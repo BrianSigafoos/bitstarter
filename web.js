@@ -5,7 +5,7 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 var buf = fs.readFileSync(index.html);
-var txt = buf.toString(buf);XS
+var txt = buf.toString;
 
 app.get('/', function(request, response) {
   response.send(txt);
