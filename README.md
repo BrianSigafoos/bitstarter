@@ -1,8 +1,6 @@
 bitstarter
 ==========
 
-more readme info coming soon!
-
 ### Requirements
 - Use https://github.com/briansigafoos/setup/setup.sh if running dev environemnt from EC2
 - Node Version Manager - https://github.com/creationix/nvm
@@ -11,12 +9,12 @@ more readme info coming soon!
 - rlwrap - http://nodejs.org/api/repl.html#repl_repl
 
 ### Deployment flow
-    git checkout develop	 		        # switches to EX: develop
-    git branch						            # shows branches
-    git commit -a -m "fixed x bug"		# -all changed files -msg for commit
-    git push origin develop			      # pushes develop branch to github
-    git checkout staging				      # switches to staging
-    git merge develop				          # merge changes from develop into staging
+    git checkout develop
+    git branch
+    git commit -a -m "fixed x bug"
+    git push origin develop
+    git checkout staging
+    git merge develop
     git push origin staging
     git push staging-heroku staging:master
     git checkout master
