@@ -99,7 +99,7 @@
     }
       /* makes AddThis centered http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */
     div.addthis_toolbox {
-      width:180px;
+      width:210px;
       margin: 0 auto;
     }
   </style>
@@ -177,17 +177,17 @@
               different in horizontal and vertical layouts, illustrating
               media queries. -->
               <div class="linediv-l">
-                <h3>0</h3> <p>backers</p>
+                <h3>9</h3> <p>backers</p>
               </div>
             </div>
             <div class="span4">
               <div class="linediv-c">
-                <h3>$50</h3> <p>of $1,000</p>
+                <h3>$45</h3> <p>of $1,000</p>
               </div>
             </div>
             <div class="span4">
               <div class="linediv-r">
-                <h3>45</h3> <p>days left</p>
+                <h3>34</h3> <p>days left</p>
               </div>
             </div>
           </div>
@@ -197,8 +197,8 @@
             <!-- Bootstrap progress bar -->
             <!-- http://twitter.github.io/bootstrap/components.html#progress -->
             <div class="thermometer progress active">
-              <div class="bar bar-success" style="width: 60%;"></div>
-              <div class="bar bar-warning" style="width: 40%;"></div>
+              <div class="bar bar-success" style="width: 5%;"></div>
+              <div class="bar bar-warning" style="width: 95%;"></div>
             </div>
           </div>
         </div>
@@ -206,7 +206,14 @@
           <div class="span6 offset3 order">
             <!-- Standard Bootstrap button. -->
             <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
-            <button class="btn btn-success btn-large">Preorder</button>
+            <!--<button class="btn btn-success btn-large">Preorder</button>-->
+            <!-- Coinbase bitcoin button -->
+            <a class="coinbase-button btn btn-success"
+               data-button-style="custom_large"
+               data-button-text="Preorder with Bitcoin"
+               data-code="dc622bb49209993983f0aa00b23ac174"
+               href="https://coinbase.com/checkouts/dc622bb49209993983f0aa00b23ac174">Preorder with Bitcoin</a>
+            <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
           </div>
         </div>
         <div class="row-fluid">
@@ -215,6 +222,7 @@
             <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
               <a class="addthis_button_preferred_1"></a>
               <a class="addthis_button_preferred_2"></a>
+              <a class="addthis_button_preferred_3"></a>
               <a class="addthis_button_compact"></a>
               <a class="addthis_counter addthis_bubble_style"></a>
             </div>
