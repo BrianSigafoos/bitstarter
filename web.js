@@ -2,11 +2,15 @@ var fs = require('fs');
 var express = require('express');
 var port = process.env.PORT || 8080;
 
+var herokuappname = "photolearn"
+var domainname = "www.photolearnapp.com"
+
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
   var buf = fs.readFileSync('index.html');
-  response.send(buf.toString());
+  if (request == "http://" + herokuappname + ".herokuapp.com"){response.redirect('http://' + domainname);}
+  else {response.send(buf.toString());}
 });
 
 // express is serving /public/css /public/js etc now
