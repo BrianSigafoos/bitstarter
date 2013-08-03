@@ -97,6 +97,103 @@
     .footer a {
       color: #ccccff;
     }
+
+
+    /* Flat Ribbon adapted from notedcode-bitstarter.herokuapp.com */
+  .github-fork-ribbon {
+    position: fixed;
+
+    /* Add a bit of padding to give some substance*/
+    padding: 2px 0;
+
+    /* Set the base colour */
+    background-color: #096;
+
+    z-index: 9999;
+  }
+  @media (max-width: 979px) {
+    body {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .github-fork-ribbon {
+      position: absolute;
+      display: none;
+    }
+
+    .container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .darkblock {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .navbar-fixed-top {
+      margin-bottom: 0px;
+    }
+    .jumbotron {
+      padding: 20px 20px 20px 20px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .navbar-fixed-top .navbar-inner {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
+  .github-fork-ribbon a,
+  .github-fork-ribbon a:hover {
+    /* Set the font */
+    font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+
+    /* Set the text properties */
+    text-decoration: none;
+    text-align: center;
+
+    width: 300px;
+    line-height: 20px;
+
+    /* Set the layout properties */
+    display: inline-block;
+    padding: 4px 0;
+  }
+
+  .github-fork-ribbon a span.smalltext {
+    font-size: 12px;
+  }
+
+  .github-fork-ribbon-wrapper {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    z-index: 9999;
+  }
+
+  .github-fork-ribbon-wrapper.right {
+    right: 0;
+  }
+
+  .github-fork-ribbon-wrapper.right .github-fork-ribbon {
+    top: 52px;
+    right: -73px;
+
+    /* Rotate the banner 45 degrees */
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
       /* makes AddThis centered http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */
     div.addthis_toolbox {
       width:210px;
@@ -119,7 +216,11 @@
   </script>
 </head>
 <body>
-
+<div id="ribbon" class="github-fork-ribbon-wrapper right" style="pointer-events: none;">
+  <div class="github-fork-ribbon">
+    <a href="https://www.coursera.org/course/startup" style="pointer-events: all;">Made for Coursera<br/><span class="smalltext">Startup Engineering Course</span></a>
+  </div>
+</div>
 <!-- Mobile-friendly navbar adapted from example. -->
 <!-- http://twitter.github.io/bootstrap/examples/starter-template.html -->
 <div class="navbar navbar-inverse navbar-fixed-top">
