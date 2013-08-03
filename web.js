@@ -9,7 +9,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
   var buf = fs.readFileSync('index.html');
-  if (request == "http://photolearn.herokuapp.com"){response.redirect('http://www.photolearn.com');}
+  if (response == "http://photolearn.herokuapp.com"){response.redirect('http://www.photolearn.com');}
   else {response.send(buf.toString());}
 });
 
