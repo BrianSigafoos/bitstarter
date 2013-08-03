@@ -2,7 +2,7 @@ var fs = require('fs');
 var express = require('express');
 var port = process.env.PORT || 4000;
 
-var herokuAppUrl = "http://photolearn.herokuapp.com"
+var herokuAppUrl = "http://photolearn.herokuapp.com/"
 var domainUrl= "http://www.photolearnapp.com"
 
 var app = express.createServer(express.logger());
@@ -10,10 +10,25 @@ var app = express.createServer(express.logger());
 // for Startup class renamed request and response to req, res
 app.get('/', function(req, res) {
   var buf = fs.readFileSync('index.html');
-  if (req.url == herokuAppUrl) {
-    res.redirect(domainUrl);
-  } else res.send(buf.toString());
+  if (req.headers.host == herokuAppUrl) {
+    res.redirect(domainUrl)
+  } else {
+    res.send(buf.toString())
+  }
 });
+
+//app.configure('production', function() {
+//  // keep this relative to other middleware, e.g. after auth but before
+//  // express.static()
+//  app.get('*', function(req, res, next) {
+//    if (req.headers.host != process.env.APP_HOST) {
+//      res.redirect('http://' + process.env.APP_HOST + req.url, 301)
+//    } else {
+//      next()
+//    }
+//
+//  })
+//})
 
 // express is serving /public/css /public/js etc now
 // instead of loading from external urls
