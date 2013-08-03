@@ -10,25 +10,21 @@ var app = express.createServer(express.logger());
 // for Startup class renamed request and response to req, res
 app.get('/', function(req, res) {
   var buf = fs.readFileSync('index.html');
-  if (req.headers.host == herokuAppUrl) {
-    res.redirect(domainUrl)
-  } else {
-    res.send(buf.toString())
-  }
+  res.send(buf.toString());
 });
 
-//app.configure('production', function() {
-//  // keep this relative to other middleware, e.g. after auth but before
-//  // express.static()
-//  app.get('*', function(req, res, next) {
-//    if (req.headers.host != process.env.APP_HOST) {
-//      res.redirect('http://' + process.env.APP_HOST + req.url, 301)
-//    } else {
-//      next()
-//    }
-//
-//  })
-//})
+app.configure('production', function() {
+  // keep this relative to other middleware, e.g. after auth but before
+  // express.static()
+  app.get('*', function(req, res, next) {
+    if (req.headers.host != process.env.APP_HOST) {
+      res.redirect('http://' + process.env.APP_HOST + req.url, 301)
+    } else {
+      next()
+    }
+  })
+  app.use(express.static(path.join(application_root, 'static')))
+})
 
 // express is serving /public/css /public/js etc now
 // instead of loading from external urls
