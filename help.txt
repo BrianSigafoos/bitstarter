@@ -1,0 +1,82 @@
+Source: https://class.coursera.org/startup-001/forum/thread?thread_id=5854#post-26916
+
+In previous homeworks, we have setup develop, staging and master branches of bitstarter. We have also deployed our stating and production app to heroku. I'd like to continue the work of HW7 in my bitstarter repository rather than start over from bitstarter-ssjs-db. Therefore I can develop in develop branch, testing in staging app etc. And I did so. If anyone has the same sentiment, below instructions may help.
+
+
+We need to download bitstarter-ssjs-db first:
+
+ git clone https://github.com/startup-class/bitstarter-ssjs-db.git
+
+
+Then cd to bitstarter, switch to develop branch
+
+ cd ~/bitstarter
+ git checkout develop
+
+
+Copy neccesary files from bitstarter-ssjs-db
+
+ cp -avr ../bitstarter-ssjs-db/models ./models
+ cp -avr ../bitstarter-ssjs-db/views ./views
+ cp ../bitstarter-ssjs-db/.env.dummy .env
+ cp ../bitstarter-ssjs-db/.gitignore .gitignore
+ cp ../bitstarter-ssjs-db/.pgpass .pgpass
+ cp ../bitstarter-ssjs-db/package.json ./package.json
+ cp ../bitstarter-ssjs-db/pgsetup.sh ./pgsetup.sh
+ cp ../bitstarter-ssjs-db/web.js ./web.js
+
+
+Modify index.html to add "Orders" link
+
+
+install npm packages
+
+ sudo npm install
+
+
+Now we are going to setup heroku addons. Because we have created at least two heroku apps (staging and production) from previous homework, we need to get heroku apps we have created by below command
+
+ heroku apps
+
+
+Then setup heroku addons, please note that we need to specify app name which we got from preceded step.
+
+ heroku addons:add heroku-postgresql:dev --app YOUR-STAGING-APP-NAME
+ heroku addons:add heroku-postgresql:dev --app YOUR-PRODUCTION-APP-NAME
+
+ heroku pg:promote `heroku config --app YOUR-STAGING-APP-NAME  | grep HEROKU_POSTGRESQL | cut -f1 -d':'` --app YOUR-STAGING-APP-NAME
+ heroku pg:promote `heroku config --app YOUR-PRODUCTION-APP-NAME  | grep HEROKU_POSTGRESQL | cut -f1 -d':'` --app YOUR-PRODUCTION-APP-NAME
+
+ heroku plugins:install git://github.com/ddollar/heroku-config.git
+
+
+Now we are going to setup postgresql. Please note that when it prompts you to "INPUT THE FOLLOWING PASSWORD TWICE BELOW", just input "bitpass0" as it prompts. DO NOT modify password here.
+
+ ./pgsetup.sh
+
+
+Modify .env to provide your coinbase API key
+
+
+
+Now we are set to run this app locally
+
+foreman start
+
+
+Browse the app in browser, if everything is OK. Then commit changes and push develop branch to origin repostory of github as we learnt before.
+
+
+Then switch to staging branch, merge changes from develop branch. Deploy to heroku staging app we have created before.
+
+
+After deployed to heroku, we need to push .env to the remote server with below command to prevent "Invalid api key"
+
+heroku config:push --app YOUR-STAGING-APP-NAME
+
+
+Test the staging app from browser. If everything runs as expected. Push staging branch to origin repository of github.
+
+
+Then switch to master branch repeat to merge, deploy to heroku, push .env and push to github.
+If everything goes well, now we can see the Orders link from our production heroku app as I did here: http://inecklace.net/.
