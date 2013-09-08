@@ -1,6 +1,6 @@
 #!/bin/bash
 # Set up postgres db for local debugging.
-#
+# 
 # Unlike MySQL, PostgreSQL makes it harder to set blank passwords or set
 # passwords from the command line.
 #
@@ -36,12 +36,12 @@ PG_PASS=${TOKS[4]}
 #
 # If you don't type in the password right, easiest is to change the value in
 # pgpass and try again. You can also delete the local postgres db
-# if you know how to do that.
+# if you know how to do that. 
 echo -e "\n\nINPUT THE FOLLOWING PASSWORD TWICE BELOW: "${PG_PASS}
 sudo -u postgres createuser -U postgres -E -P -s $PG_USER
 sudo -u postgres createdb -U postgres -O $PG_USER $PG_DB
 
 # Test that it works.
-# Note that the symlinking of pgpass into $HOME should pass the password to psql and make these commands work.
+# Note that the symlinking of pgpass into $HOME should pass the password to psql and make these commands work. 
 echo "CREATE TABLE phonebook(phone VARCHAR(32), firstname VARCHAR(32), lastname VARCHAR(32), address VARCHAR(64));" | psql -d $PG_DB -U $PG_USER
 echo "INSERT INTO phonebook(phone, firstname, lastname, address) VALUES('+1 123 456 7890', 'John', 'Doe', 'North America');" | psql -d $PG_DB -U $PG_USER
