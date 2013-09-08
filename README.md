@@ -16,8 +16,8 @@ bitstarter
     git checkout staging
     git merge develop
     git push origin staging
-    git push staging-heroku staging:master
+    git push heroku-staging staging:master
     git checkout master
     git merge master
     git push origin master
-    git push production-heroku master:master
+    git push heroku-production master:master
